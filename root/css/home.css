@@ -1,0 +1,44 @@
+/* MAIN PRODUCTEN */
+main {
+  margin: auto;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  max-width: 980px;
+  width: 100%;
+}
+.producten{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  grid-gap: 2.5vw;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+}
+.product {
+    max-width: 200px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.product img {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+}
+.product div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+.product button {
+    padding: 0.2rem 0.5rem;
+}
+.product button:hover {
+    cursor: pointer;
+}
+

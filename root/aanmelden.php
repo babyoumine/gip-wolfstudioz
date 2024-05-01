@@ -1,35 +1,29 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login pagina</title>
+    <link rel="stylesheet" href="aanmelden.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Aanmelden bij Wolfstudioz!</h2>
+        <p>Vul je gegevens in voor je aan te melden.</p>
+        <p>Als je al een account hebt, dan mag je <a href="login.html">hier</a> clicken om in te loggen</p>
+        <br><br>
+        <hr>
+        <br>
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $servername = "localhost";
-        $username = "root";
-        $password = "usbw"; 
-        $dbname = "gip"; 
+        <form action="aanmelden.php" method="post">
+            <label for="username">Gebruikersnaam:</label><br>
+            <input type="text" id="username" name="username" required><br>
 
-        $connect = new mysqli($servername, $username, $password, $dbname);
+            <label for="password">Wachtwoord:</label><br>
+            <input type="password" id="password" name="password" required><br>
 
-        // Check connection
-        if ($connect->connect_error) {
-            die("Connection failed: " . $connect->connect_error); // dead = error message
-        }
-
-        // Username - password form
-        $count = 0;
-        $count += 1; 
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        // insert into database 
-        $sql = "INSERT INTO loginuser (username, password) VALUES ('$username', '$password')";
-
-        if ($connect->query($sql) === TRUE) {
-            // echo "record created";
-            header("Location: home.php");
-            exit();
-        } else {
-            echo "Error: " . $sql . "<br>" . $connect->error;
-        }
-
-        $connect->close();
-    }
-    ?>
+            <input type="submit" value="Aanmelden">
+        </form>
+    </div>
+</body>
+</html>

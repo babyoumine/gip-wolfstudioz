@@ -1,0 +1,263 @@
+@font-face {
+    font-family: "Halyard Display";
+    src: url(../fonts/Halyard-Display-Light.ttf);
+    font-style: normal;
+    font-weight: 200;
+}
+@font-face {
+    font-family: "Halyard Display";
+    src: url(../fonts/Halyard\ Display.ttf);
+    font-style: normal;
+    font-weight: 400;
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+input, textarea, select, button { 
+    outline: none;
+    border: none;
+    font-family:inherit; 
+}
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}  
+a, a:visited, a:hover, a:active {
+    color: inherit;
+}
+a {
+    text-decoration: none;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: "Halyard Display", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+.navbar .logo img {
+    height: 4rem;
+}
+.nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+}
+.nav-list li {
+    margin: 0 0.5rem;
+    position: relative;
+}
+.nav-list li a {
+    padding: 1rem;
+}
+/* .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1e1d1d;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(69, 67, 67, 0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: 0.3s ease;  # leuk effectje
+    border: 1px solid black;
+}
+.dropdown-content a:hover {
+    background-color: #555555; 
+}
+.nav-list li:hover .dropdown-content {
+    display: block;
+} */
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav-buttons svg#login {
+    padding: 0.5rem;
+}
+.nav-buttons svg {
+    height: 2rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.nav-buttons svg:hover {
+    transform: scale(1.1);
+}
+.hamburger {
+    display: none;
+}
+@media screen and (min-width: 768px) {
+    .navbar .nav-mobile {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .nav-mobile {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        padding: 1rem;
+        gap: 1rem;
+        top: 6rem;
+        right: 0;
+        width: 100%;
+        background-color: rgb(37, 53, 81);
+        z-index: 1;
+        box-sizing: border-box;
+    }
+    .nav-mobile.active {
+        display: flex;
+    }
+    .nav-list {
+        /* order: 2; */
+        flex-direction: column;
+    }
+    .nav-list li {
+        margin: 15px 0;
+        position: relative;
+    }
+    .nav-list a {
+        color: white;
+        font-weight: 100;
+    }
+    .nav-buttons {
+        order: 1;
+        gap: 2rem;
+        width: 100%;
+    }
+    .nav-buttons svg {
+        fill: white;
+    }
+    .nav-buttons svg#login {
+        /* margin-left: auto; */
+    }
+    .hamburger {
+        display: block;
+        background-color: transparent;
+        border: none;
+        color: black;
+        font-size: 24px;
+        cursor: pointer;
+        outline: none;
+    }
+}
+
+main {
+  flex: 1;
+}
+#footer-separator {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+footer {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding: 3rem;
+    padding-bottom: 5rem;
+}
+.footer-container {
+    display: flex;
+    padding: 0rem 6rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.footer-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+h2 {
+    font-weight: bold;
+}
+.footer-section ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    list-style-type: none;
+    padding: 0;
+}
+.social-icons {
+    display: flex;
+    align-items: center;
+}
+.social-icons svg {
+    height: 2rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 6rem;
+    /* text-align: center; */
+}
+.logo-section img {
+    height: 4rem;
+}
