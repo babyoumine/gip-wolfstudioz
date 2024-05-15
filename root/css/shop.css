@@ -3,25 +3,56 @@ main {
     margin: auto;
     padding: 3rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    max-width: 980px;
+    gap: 1rem;
+    max-width: 900px;
     width: 100%;
 }
-.producten{
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-    grid-column-gap: 2rem;
-    grid-row-gap: 2rem;
-    box-sizing: border-box;
+.filters {
+    display: flex;
+    justify-content: left;
     flex-wrap: wrap;
+    gap: 2rem;
+}
+.filters label {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 0.4rem;
+}
+.filters select {
+    border-right: 0.4rem solid transparent;
+    padding: 0.2rem 0.4rem;
+    background-color: #eeeeee;
+}
+.filters .price-range {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+.filters input[type="range"] {
+    margin: 0;
+    accent-color: black;
+}
+.filters .price-range span {
+    font-size: 0.8rem;
+}
+.products {
+    display: flex;
+    gap: 2rem;
+    flex-shrink: 0;
+    justify-content: left;
+    flex-wrap: wrap;
+    box-sizing: border-box;
     position: relative;
     width: 100%;
 }
 .product {
-    max-width: 200px;
     display: flex;
     align-items: center;
     flex-direction: column;
+    width: 180px;
     gap: 1.5rem;
 }
 .product img {

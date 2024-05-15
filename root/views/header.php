@@ -1,6 +1,6 @@
 <nav class="navbar">
     <div class="logo">
-      <a href="#">
+      <a href="home.php">
         <img src="./Images/wolf.png" alt="KledingWinkel Logo">
       </a>
     </div>
