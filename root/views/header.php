@@ -9,6 +9,7 @@
         <li><a href="home.php">home</a></li>
         <li><a href="about.php">about</a></li>
         <li><a href="shop.php">shop</a></li>
+        <li><a href="archive.php">archive</a></li>
         <li><a href="contact.php">contact</a></li>
         <!-- <li><a href="#" class="filter-button">Shop filter</a>
           <div class="dropdown-content">

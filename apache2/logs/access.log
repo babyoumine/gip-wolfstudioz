@@ -1,4 +1,0 @@
-::1 - - [15/May/2024:20:07:43 +0200] "GET /shop.php?price=21&size=&category=sweaters HTTP/1.1" 200 10410
-::1 - - [15/May/2024:20:07:47 +0200] "GET /shop.php?price=21&size=&category= HTTP/1.1" 200 11368
-::1 - - [15/May/2024:20:07:48 +0200] "GET /shop.php?price=138&size=&category= HTTP/1.1" 200 11864
-::1 - - [15/May/2024:20:07:49 +0200] "GET /shop.php?price=257&size=&category= HTTP/1.1" 200 11864

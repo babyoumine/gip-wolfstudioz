@@ -1,0 +1,13 @@
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: auto;
+    padding: 3rem;
+    gap: 1rem;
+    max-width: 920px;
+    width: 100%;
+}
+main img {
+    width: 100%;
+    height: auto;
+}

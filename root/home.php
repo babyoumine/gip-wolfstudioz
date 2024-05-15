@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   	<?php include("./views/head.php") ?>
-<link rel="stylesheet" href="./css/home.css">
+	<link rel="stylesheet" href="./css/home.css">
   	<title>WolfStudioz - Home</title>
 </head>
 

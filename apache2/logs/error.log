@@ -1,5 +1,4 @@
-[Wed May 15 20:07:39.851836 2024] [mpm_winnt:notice] [pid 21648:tid 828] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
-[Wed May 15 20:07:39.851836 2024] [mpm_winnt:notice] [pid 21648:tid 828] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
-[Wed May 15 20:07:39.851836 2024] [core:notice] [pid 21648:tid 828] AH00094: Command line: 'C:\\Users\\Felix\\Desktop\\programming\\USBWebServer_GIP\\USBWebServer_GIP/apache2/bin/httpd_usbwv8.exe -d C:/Users/Felix/Desktop/programming/USBWebServer_GIP/USBWebServer_GIP/apache2'
-[Wed May 15 20:07:39.855837 2024] [mpm_winnt:notice] [pid 21648:tid 828] AH00418: Parent: Created child process 2360
-[Wed May 15 20:07:40.340575 2024] [mpm_winnt:notice] [pid 2360:tid 848] AH00354: Child: Starting 64 worker threads.
+[Wed May 15 22:00:20.379677 2024] [mpm_winnt:notice] [pid 22520:tid 844] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
+[Wed May 15 22:00:20.379677 2024] [mpm_winnt:notice] [pid 22520:tid 844] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
+[Wed May 15 22:00:20.379677 2024] [core:notice] [pid 22520:tid 844] AH00094: Command line: 'C:\\Users\\Felix\\Desktop\\programming\\USBWebServer_GIP\\USBWebServer_GIP/apache2/bin/httpd_usbwv8.exe -d C:/Users/Felix/Desktop/programming/USBWebServer_GIP/USBWebServer_GIP/apache2'
+[Wed May 15 22:00:20.384198 2024] [mpm_winnt:notice] [pid 22520:tid 844] AH00418: Parent: Created child process 26884

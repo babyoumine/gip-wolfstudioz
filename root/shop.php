@@ -51,6 +51,7 @@
                     <option disabled>select the category</option>
                     <option name="all" value="" selected>all categories</option>
                     <option name="sweaters" value="sweaters">sweaters</option>
+                    <option name="skirts" value="skirts">skirts</option>
                     <option name="shirts" value="shirts">shirts</option>
                     <option name="jeans" value="jeans">jeans</option>
                 </select>
