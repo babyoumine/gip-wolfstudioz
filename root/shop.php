@@ -4,7 +4,7 @@
 <head>
     <?php include("./views/head.php") ?>
     <link rel="stylesheet" href="./css/shop.css">
-    <title>WolfStudioz - Home</title>
+    <title>WolfStudioz - Shop</title>
 </head>
 
 <body>
@@ -24,8 +24,6 @@
         if ($connect->connect_error) {
             die("Connectie mislukt: " . $connect->connect_error);
         }
-        
-        
         
         $sql = "SELECT p.product_id as product_id, name, price, description, COUNT( * ) AS sizes_count, SUM( s.quantity ) AS total_quantity 
                 FROM products p
@@ -79,7 +77,7 @@
             <?php 
                 foreach($products as &$product) {
             ?>
-                <div class="product">
+                <a href="product.php?id=<?php echo $product[0]; ?>" class="product">
                     <img src="./images/products/<?php echo $product[0]; ?>_1.jpg" alt="plant">
                     <div>
                         <span class="product-title"><?php echo $product[1] ?></span>
@@ -87,7 +85,7 @@
                         <span class="product-price">€<?php echo $product[2] ?></span>
                         <button>Add To Cart</button>
                     </div>
-                </div>
+                </a>
             <?php
                 }
             ?>

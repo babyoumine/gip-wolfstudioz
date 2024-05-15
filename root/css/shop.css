@@ -4,9 +4,8 @@ main {
     padding: 3rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 1rem;
-    max-width: 900px;
+    max-width: 920px;
     width: 100%;
 }
 .filters {
