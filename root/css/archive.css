@@ -4,7 +4,7 @@ main {
     margin: auto;
     padding: 3rem;
     gap: 1rem;
-    max-width: 920px;
+    max-width: var(--main-width);
     width: 100%;
 }
 main img {

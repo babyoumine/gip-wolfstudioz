@@ -1,0 +1,157 @@
+/* MAIN PRODUCTEN */
+main {
+    margin: auto;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: var(--main-width);
+    width: 100%;
+}
+label[for="search"] {
+    display: flex;
+    flex-direction: row;
+}
+#search {
+    padding: 0rem 0.7rem;
+    width: 100%;
+    background-color: #eeeeee;
+}
+label[for="search"] button {
+    display: flex;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+label[for="search"] button img, .product button[name="delete"] img, button[name="create"] img {
+    height: 1rem;
+}
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-wrap: wrap;
+    gap: 1rem;
+    /* height: 3.5rem; */
+}
+.filters button[name="create"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    cursor: pointer;
+    padding: 0.3rem;
+    width: 100%;
+    /* border-radius: 1rem; */
+    background-color: black;
+}
+.filters label {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 0.4rem;
+}
+.filters select {
+    border-right: 0.4rem solid transparent;
+    padding: 0.2rem 0.4rem;
+    background-color: #eeeeee;
+}
+.filters .price-range {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+.filters input[type="range"] {
+    margin: 0;
+    accent-color: black;
+}
+.filters .price-range span {
+    font-size: 0.8rem;
+}
+.products {
+    display: flex;
+    gap: 2rem;
+    flex-shrink: 0;
+    justify-content: left;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+}
+.product {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 180px;
+    gap: 1.5rem;
+}
+body:has(#insert-product.active) {
+    overflow: hidden;
+}
+#insert-product.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background: rgba(0,0,0,0.5);
+}
+#insert-product > div {
+    padding: 2rem;
+    background-color: white;
+}
+#insert-product {
+    display: none;
+}
+.product > img {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+}
+.product > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.6rem;
+}
+.product label {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+.product label span {
+    font-size: 0.8rem;
+}
+.product input, .product select, .product textarea {
+    display: flex;
+    padding: 0.3rem 0.6rem;
+    width: 100%;
+    background-color: #eeeeee;
+}
+.product textarea {
+    resize: none;
+}
+.product select {
+    width: 100%;
+    border-right: 0.4rem solid transparent;
+}
+.product-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.product button {
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+    display: flex;
+    color: white;
+    background-color: black;
+}
+.product button[name=save] {
+    background-color:rgb(96, 165, 79);
+}
+.product button[name=delete] {
+    background-color: rgb(163, 76, 76);
+}

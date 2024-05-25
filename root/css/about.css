@@ -1,0 +1,10 @@
+main {
+    margin: auto;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    max-width: var(--main-width);
+    width: 100%;
+}

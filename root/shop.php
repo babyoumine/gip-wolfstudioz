@@ -13,6 +13,7 @@
         $filters["category"] = isset($_GET["category"]) && $_GET["category"] && $_GET["category"] !== "all" ? $_GET["category"] : null;
         $filters["size"] = isset($_GET["size"]) && $_GET["size"] && $_GET["size"] !== "all" ? $_GET["size"] : null;
         $filters["search"] = isset($_GET["search"]) && $_GET["search"] ? $_GET["search"] : "";
+        $orderDescending = isset($_GET["order"]) && $_GET["order"] == "h2l" ? true : false;
         $minprice = isset($_GET["minprice"]) && $_GET["minprice"] > 0 ? floatval($_GET["minprice"]) : null;
         $maxprice = isset($_GET["maxprice"]) && $_GET["maxprice"] > 0 ? floatval($_GET["maxprice"]) : null;
    
@@ -33,10 +34,11 @@
                 WHERE ";
         $categoryQuery = where($filters, 'category');
         $sizeQuery = where($filters, 'size');
-        $searchQuery = " name LIKE '%{$filters['search']}%' AND ";
         $minPriceQuery = (isset($minprice)) ? " price >= {$minprice} AND " : " price >= 0 AND ";
-        $maxPriceQuery = (isset($maxprice)) ? " price <= {$maxprice} " : " price >= 0";
-        $sql = implode('', array($sql, $categoryQuery, $sizeQuery, $searchQuery, $minPriceQuery, $maxPriceQuery, " GROUP BY p.product_id"));
+        $maxPriceQuery = (isset($maxprice)) ? " price <= {$maxprice} AND " : " price >= 0 AND ";
+        $searchQuery = " ( name LIKE '%{$filters['search']}%' OR description LIKE '%{$filters['search']}%' ) ";
+        $orderQuery = $orderDescending ? "DESC" : "ASC"; 
+        $sql = implode('', array($sql, $categoryQuery, $sizeQuery, $minPriceQuery, $maxPriceQuery, $searchQuery, " GROUP BY p.product_id ORDER BY price {$orderQuery}"));
         // echo $sql;
         $result = $connect->query($sql);
         
@@ -74,13 +76,21 @@
                     <option name="large" value="large">large</option>
                 </select>
             </label>
-            <label for="min-price">
+            <label for="order">
+                <span>order:</span>
+                <select name="order" id="order">
+                    <option disabled>select the order</option>
+                    <option name="l2h" value="l2h">price: low to high</option>
+                    <option name="h2l" value="h2l">price: high to low</option>
+                </select>
+            </label>
+            <!-- <label for="min-price">
                 <span>minimum price:</span>
                 <div class="price-range">
-                    <input id="min-price" type="range" min=1 max=500 value="<?php echo $minprice ? $minprice : "0" ?>">
-                    <span><?php echo $minprice ? $minprice : "0" ?>€</span>
+                        <input id="min-price" type="range" min=1 max=500 value="<?php echo $minprice ? $minprice : "0" ?>">
+                        <span><?php echo $minprice ? $minprice : "0" ?>€</span>
                 </div>
-            </label>
+            </label> -->
             <label for="max-price">
                 <span>maximum price:</span>
                 <div class="price-range">
@@ -117,30 +127,30 @@
 
         let maxPriceInput = document.getElementById("max-price")
         maxPriceInput.addEventListener("input", (event) => {
-            if(parseInt(minPriceInput.value) > parseInt(event.target.value)) return event.target.value = parseInt(minPriceInput.value) + 1;
+            // if(parseInt(minPriceInput.value) > parseInt(event.target.value)) return event.target.value = parseInt(minPriceInput.value) + 1;
             document.querySelector('.filters label[for="max-price"] div span').innerText = `${event.target.value}€`
         });
         maxPriceInput.addEventListener("change", (event) => changeSearchParams("maxprice", event.target.value));
 
-        let minPriceInput = document.getElementById("min-price")
-        minPriceInput.addEventListener("input", (event) => {
-            if(parseInt(maxPriceInput.value) < parseInt(event.target.value)) return event.target.value = parseInt(maxPriceInput.value) - 1;
-            document.querySelector('.filters label[for="min-price"] div span').innerText = `${event.target.value}€`
-        });
-        minPriceInput.addEventListener("change", (event) => changeSearchParams("minprice", event.target.value));
+        // let minPriceInput = document.getElementById("min-price")
+        // minPriceInput.addEventListener("input", (event) => {
+        //     if(parseInt(maxPriceInput.value) < parseInt(event.target.value)) return event.target.value = parseInt(maxPriceInput.value) - 1;
+        //     document.querySelector('.filters label[for="min-price"] div span').innerText = `${event.target.value}€`
+        // });
+        // minPriceInput.addEventListener("change", (event) => changeSearchParams("minprice", event.target.value));
         
-        let sizeSelect = document.getElementById("size");
-        let selectedSize = sizeSelect.querySelector(`option[name=${searchParams.get("size") || "all"}]`);
-        if(selectedSize) {
-            selectedSize.selected = true;
-        } else changeSearchParams("size", "all");
-        sizeSelect.addEventListener("change", (event) => changeSearchParams("size", event.target.value))
-        let categorySelect = document.getElementById("category");
-        let selectedCategory = categorySelect.querySelector(`option[name=${searchParams.get("category") || "all"}]`);
-        if(selectedCategory) {
-            selectedCategory.selected = true;
-        } else changeSearchParams("category", "all");
-        categorySelect.addEventListener("change", (event) => changeSearchParams("category", event.target.value))
+        setDefaults("size", "all");
+        setDefaults("category", "all");
+        setDefaults("order", "l2h");
+        
+        function setDefaults(name, defaultValue) {
+            let select = document.getElementById(name);
+            let selected = select.querySelector(`option[name=${searchParams.get(name) || defaultValue}]`);
+            if(selected) {
+                selected.selected = true;
+            } else changeSearchParams(name, defaultValue);
+            select.addEventListener("change", (event) => changeSearchParams(name, event.target.value))
+        }
         
         function changeSearchParams(parameter, value) {
             searchParams.set(parameter, value);
