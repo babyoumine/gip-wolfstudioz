@@ -44,35 +44,28 @@
             <span class="product-price">€<?php echo $product[2] ?></span>
             <p><?php echo $product[3] ?></p>
             <select name="sizes" id="product-sizes">
-                <option value="big">BIG</option>
+                <?php foreach( $products as $size ) { ?>
+                    <option 
+                        <?php if($product[4] === $size[4]) { ?>
+                            selected="true"    
+                        <?php } ?> 
+                    name="<?php echo $size[4];?>" value="<?php echo $size[5];?>"><?php echo $size[4];?></option>
+                <?php } ?>
             </select>
+            <span class="no-stock">OUT OF STOCK!</span>
             <button>Add To Cart</button>
         </div>
     </main>
     <script>
-        let searchParams = new URLSearchParams(window.location.search);
-
-        let priceInput = document.querySelector(".filters .price-range input")
-        priceInput.addEventListener("input", (event) => document.querySelector(".filters .price-range span").innerText = `${event.target.value}€`);
-        priceInput.addEventListener("change", (event) => changeSearchParams("price", event.target.value));
-        
-        let sizeSelect = document.getElementById("size");
-        let selectedSize = sizeSelect.querySelector(`option[name=${searchParams.get("size") || "all"}]`);
-        if(selectedSize) {
-            selectedSize.selected = true;
-        } else changeSearchParams("size", "all");
-        sizeSelect.addEventListener("change", (event) => changeSearchParams("size", event.target.value))
-        let categorySelect = document.getElementById("category");
-        let selectedCategory = categorySelect.querySelector(`option[name=${searchParams.get("category") || "all"}]`);
-        if(selectedCategory) {
-            selectedCategory.selected = true;
-        } else changeSearchParams("category", "all");
-        categorySelect.addEventListener("change", (event) => changeSearchParams("category", event.target.value))
-        
-        function changeSearchParams(parameter, value) {
-            searchParams.set(parameter, value);
-            window.location.search = searchParams.toString();
-        }
+        let select = document.getElementById("product-sizes");
+        let selectedSize = document.querySelector("#product-sizes option[selected=true]");
+        let button = document.querySelector(".product-details button");
+        if(parseInt(selectedSize.value) < 1) button.disabled = true;
+        select.addEventListener("change", (event) => {
+            if(parseInt(event.target.value) < 1) {
+                button.disabled = true;
+            } else button.disabled = false
+        });
     </script>
     <?php include("./views/footer.php") ?>
 </body>

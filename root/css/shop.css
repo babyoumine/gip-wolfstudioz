@@ -8,6 +8,24 @@ main {
     max-width: 920px;
     width: 100%;
 }
+label[for="search"] {
+    display: flex;
+    flex-direction: row;
+}
+#search {
+    padding: 0rem 0.7rem;
+    width: 100%;
+    background-color: #eeeeee;
+}
+label[for="search"] button {
+    display: flex;
+    background-size: contain;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+label[for="search"] button img {
+    height: 1rem;
+}
 .filters {
     display: flex;
     justify-content: left;
@@ -76,5 +94,4 @@ main {
 .product button:hover {
     cursor: pointer;
 }
-  
   

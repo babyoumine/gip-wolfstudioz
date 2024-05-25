@@ -12,8 +12,10 @@
     <?php
         $filters["category"] = isset($_GET["category"]) && $_GET["category"] && $_GET["category"] !== "all" ? $_GET["category"] : null;
         $filters["size"] = isset($_GET["size"]) && $_GET["size"] && $_GET["size"] !== "all" ? $_GET["size"] : null;
-        $price = isset($_GET["price"]) ? floatval($_GET["price"]) : null;
-
+        $filters["search"] = isset($_GET["search"]) && $_GET["search"] ? $_GET["search"] : "";
+        $minprice = isset($_GET["minprice"]) && $_GET["minprice"] > 0 ? floatval($_GET["minprice"]) : null;
+        $maxprice = isset($_GET["maxprice"]) && $_GET["maxprice"] > 0 ? floatval($_GET["maxprice"]) : null;
+   
         $servername = "localhost";
         $username = "root";
         $password = "usbw";
@@ -31,8 +33,10 @@
                 WHERE ";
         $categoryQuery = where($filters, 'category');
         $sizeQuery = where($filters, 'size');
-        $priceQuery = (isset($price)) ? " price <= {$price} " : " price >= 0";
-        $sql = implode('', array($sql, $categoryQuery, $sizeQuery, $priceQuery, " GROUP BY p.product_id"));
+        $searchQuery = " name LIKE '%{$filters['search']}%' AND ";
+        $minPriceQuery = (isset($minprice)) ? " price >= {$minprice} AND " : " price >= 0 AND ";
+        $maxPriceQuery = (isset($maxprice)) ? " price <= {$maxprice} " : " price >= 0";
+        $sql = implode('', array($sql, $categoryQuery, $sizeQuery, $searchQuery, $minPriceQuery, $maxPriceQuery, " GROUP BY p.product_id"));
         // echo $sql;
         $result = $connect->query($sql);
         
@@ -44,6 +48,10 @@
         }
     ?>
     <main>
+        <label for="search">
+            <input placeholder="search for a product..." value="<?php echo $filters["search"] ?>" type="search" id="search">
+            <button><img src="../images/search.svg" alt=""></button>
+        </label>
         <div class="filters">
             <label for="category">
                 <span>category:</span>
@@ -66,11 +74,18 @@
                     <option name="large" value="large">large</option>
                 </select>
             </label>
-            <label for="price">
+            <label for="min-price">
+                <span>minimum price:</span>
+                <div class="price-range">
+                    <input id="min-price" type="range" min=1 max=500 value="<?php echo $minprice ? $minprice : "0" ?>">
+                    <span><?php echo $minprice ? $minprice : "0" ?>€</span>
+                </div>
+            </label>
+            <label for="max-price">
                 <span>maximum price:</span>
                 <div class="price-range">
-                    <input id="price" type="range" min=1 max=500 value="<?php echo $price ? $price : "500" ?>">
-                    <span><?php echo $price ? $price : "500" ?>€</span>
+                    <input id="max-price" type="range" min=1 max=500 value="<?php echo $maxprice ? $maxprice : "500" ?>">
+                    <span><?php echo $maxprice ? $maxprice : "500" ?>€</span>
                 </div>
             </label>
         </div>
@@ -82,7 +97,6 @@
                     <img src="./images/products/<?php echo $product[0]; ?>_1.jpg" alt="plant">
                     <div>
                         <span class="product-title"><?php echo $product[1] ?></span>
-                        <!-- <p><?php echo $product[3] ?></p> description not necessary -->
                         <span class="product-price">€<?php echo $product[2] ?></span>
                         <button>Add To Cart</button>
                     </div>
@@ -95,9 +109,25 @@
     <script>
         let searchParams = new URLSearchParams(window.location.search);
 
-        let priceInput = document.querySelector(".filters .price-range input")
-        priceInput.addEventListener("input", (event) => document.querySelector(".filters .price-range span").innerText = `${event.target.value}€`);
-        priceInput.addEventListener("change", (event) => changeSearchParams("price", event.target.value));
+        let searchInput = document.getElementById("search");
+        let searchButton = document.querySelector("label[for=search] button");
+        searchButton.addEventListener("click", () => {
+            changeSearchParams("search", searchInput.value);
+        });
+
+        let maxPriceInput = document.getElementById("max-price")
+        maxPriceInput.addEventListener("input", (event) => {
+            if(parseInt(minPriceInput.value) > parseInt(event.target.value)) return event.target.value = parseInt(minPriceInput.value) + 1;
+            document.querySelector('.filters label[for="max-price"] div span').innerText = `${event.target.value}€`
+        });
+        maxPriceInput.addEventListener("change", (event) => changeSearchParams("maxprice", event.target.value));
+
+        let minPriceInput = document.getElementById("min-price")
+        minPriceInput.addEventListener("input", (event) => {
+            if(parseInt(maxPriceInput.value) < parseInt(event.target.value)) return event.target.value = parseInt(maxPriceInput.value) - 1;
+            document.querySelector('.filters label[for="min-price"] div span').innerText = `${event.target.value}€`
+        });
+        minPriceInput.addEventListener("change", (event) => changeSearchParams("minprice", event.target.value));
         
         let sizeSelect = document.getElementById("size");
         let selectedSize = sizeSelect.querySelector(`option[name=${searchParams.get("size") || "all"}]`);

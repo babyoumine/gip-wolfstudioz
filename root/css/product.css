@@ -52,4 +52,15 @@ main > * {
     cursor: pointer;
     width: var(--button-width);
 }
+.product-details .no-stock {
+    display: none;
+}
+.product-details .no-stock {
+    display: block;
+}
+.product-details button:disabled {
+    background-color: rgb(240, 240, 240);
+    color: gray;
+    cursor: default;
+}
   
