@@ -74,10 +74,11 @@
                 <span>category</span>
                 <select name="category" id="product-category">
                     <option selected disabled>select the category</option>
-                    <option name="sweaters" value="sweaters">sweaters</option>
                     <option name="skirts" value="skirts">skirts</option>
-                    <option name="shirts" value="shirts">shirts</option>
-                    <option name="jeans" value="jeans">jeans</option>
+                    <option name="dress" value="dress">dress</option>
+                    <option name="top" value="top">top</option>
+                    <option name="shoes" value="shoes">shoes</option>
+                    <option name="pants" value="pants">pants</option>
                 </select>
             </label>
             <hr>
@@ -119,10 +120,11 @@
                 <select name="category" id="category">
                     <option disabled>select the category</option>
                     <option name="all" value="" selected>all categories</option>
-                    <option name="sweaters" value="sweaters">sweaters</option>
                     <option name="skirts" value="skirts">skirts</option>
-                    <option name="shirts" value="shirts">shirts</option>
-                    <option name="jeans" value="jeans">jeans</option>
+                    <option name="dress" value="dress">dress</option>
+                    <option name="top" value="top">top</option>
+                    <option name="shoes" value="shoes">shoes</option>
+                    <option name="pants" value="pants">pants</option>
                 </select>
             </label>
             <label for="size">
@@ -185,10 +187,11 @@
                             <span>category</span>
                             <select name="category" id="category">
                                 <option selected disabled>select the category</option>
-                                <option name="sweaters" value="sweaters">sweaters</option>
                                 <option name="skirts" value="skirts">skirts</option>
-                                <option name="shirts" value="shirts">shirts</option>
-                                <option name="jeans" value="jeans">jeans</option>
+                                <option name="dress" value="dress">dress</option>
+                                <option name="top" value="top">top</option>
+                                <option name="shoes" value="shoes">shoes</option>
+                                <option name="pants" value="pants">pants</option>
                             </select>
                         </label>
                         <div class="product-buttons">

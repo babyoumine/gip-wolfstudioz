@@ -41,7 +41,7 @@
         <div class="product-details">
             <h1 class="product-title"><?php echo $product[1] ?></h1>
             <span class="product-price">€<?php echo $product[2] ?></span>
-            <p><?php echo $product[3] ?></p>
+            <pre><?php echo $product[3] ?></pre>
             <select name="sizes" id="product-sizes">
                 <?php foreach( $products as $size ) { ?>
                     <option 

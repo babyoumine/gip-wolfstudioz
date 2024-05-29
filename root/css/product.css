@@ -40,6 +40,9 @@ main > * {
     font-weight: 400;
     font-size: 1rem;
 }
+.product-details pre {
+    font-family: inherit;
+}
 .product-details button {
     padding: 0.5rem 2rem;
     background-color: rgb(59, 59, 59);
