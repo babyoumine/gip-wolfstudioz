@@ -1,20 +1,36 @@
 <?php
-  $servername = "localhost";
-  $username = "root";
-  $password = "usbw";
-  $db = "gip";
+    session_start();
+    $servername = "localhost";
+    $username = "root";
+    $password = "usbw";
+    $database = "gip2";
 
-  $conn = mysqli_connect($servername, $username, $password, $db);
+    $conn = new mysqli($servername, $username, $password, $database);
 
-  $user = $_REQUEST['username'];
-  $pass = $_REQUEST['password'];
+    if ($conn->connect_error) {
+        die("Connectie mislukt: " . $conn->connect_error);
+    }
 
-  $checkUser = mysqli_query($conn, "SELECT username FROM loginuser WHERE username = '".$user."' AND password = '".$pass."'");
-
-  if (mysqli_num_rows($checkUser) != 1) {
-    echo "Failed to log in !";
-    
-  } else {
-    header("Location: home.php");
-  }
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        // Use prepared statements to prevent SQL injection
+        $stmt = $conn->prepare("SELECT * FROM users WHERE name = ? AND password = ?");
+        $stmt->bind_param("ss", $username, $password);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            // Store session variables
+            $_SESSION['loggedin'] = true;
+            $_SESSION['username'] = $username;
+            // Redirect to the user home page
+            header("Location: home.php");
+            exit();
+        } else {
+            // Redirect back to login page with error
+            header("Location: login.php?error=1");
+            exit();
+        }
+    }
+    $conn->close();
 ?>

@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
   	<?php include("./views/head.php") ?>
+      <?php 
+            if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+                header("Location: login.php");
+                exit();
+            }
+        ?> 
     <link rel="stylesheet" href="./css/admin-shop.css">
   	<title>WolfStudioz - Admin</title>
 </head>

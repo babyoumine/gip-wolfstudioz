@@ -1,29 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login pagina</title>
-    <link rel="stylesheet" href="aanmelden.css">
+  	<?php include("./views/head.php") ?>
+	<link rel="stylesheet" href="./css/login.css">
+  	<title>WolfStudioz - Home</title>
 </head>
+
 <body>
-    <div class="container">
-        <h2>Login bij Wolfstudioz!</h2>
-        <p>Vul je gegevens in voor je aan te melden.</p>
-        
-        <br><br>
-        <hr>
-        <br>
+	<?php include("./views/header.php") ?>
 
-        <form action="login.php" method="post">
-            <label for="username">Gebruikersnaam:</label><br>
-            <input type="text" id="username" name="username" required><br>
+    <script>
+        // Function to check URL parameters and show error message
+        function checkLoginError() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('error') && urlParams.get('error') === '1') {
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        }
+        // Run the function on page load
+        window.onload = checkLoginError;
+    </script>
 
-            <label for="password">Wachtwoord:</label><br>
-            <input type="password" id="password" name="password" required><br>
-
-            <input type="submit" value="Aanmelden">
+	<main>
+        <form id="loginForm" action="login-post.php" method="post">
+            <label for="username">
+                <span>
+                    Name:
+                </span>
+                <input type="text" id="username" name="username" required>
+            </label>
+            <label for="password">
+                <span>
+                    Password:
+                </span>
+                <input type="password" id="password" name="password" required>
+            </label>
+            <button type="submit">Log in</button>
         </form>
-    </div>
+	</main>
+
+    <?php
+            ini_set('session.gc_maxlifetime', 3600); // 1 hour
+            session_set_cookie_params(3600); // 1 hour
+    ?>
+	<?php include("./views/footer.php") ?>
 </body>
 </html>
